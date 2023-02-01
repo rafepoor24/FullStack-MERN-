@@ -1,15 +1,30 @@
-import React from 'react'
+import React from "react";
+import { Link } from "react-router-dom";
 
-const Navigation = () => {
+const navigation = () => {
   return (
     <div>
-        
-
-
-
-
+      navigation
+      {/* Navegacion*/}
+      <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div className="container">
+          <Link className="navbar-brand" to={"/"}>
+            Usuario
+          </Link>
+          <Link
+            className="navbar-brand"
+            
+            to={"/crearusuario"}
+          >
+            Crear usuario
+          </Link>
+          <Link className="navbar-brand"  to={"/"}>
+            Guardar usuario
+          </Link>
+        </div>
+      </nav>
     </div>
-  )
-}
+  );
+};
 
-export default Navigation
+export default navigation;

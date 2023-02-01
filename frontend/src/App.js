@@ -1,9 +1,28 @@
 import './App.css';
+import {Routes,Route} from 'react-router-dom';
+
+import Navigation from './components/Navigation';
+import CrearteUsers from './components/CrearteUsers';
+import UserList from './components/UsersList';
+
 
 function App() {
   return (
     <div>
-      <h2>Hola mundo React</h2>
+     
+     <Navigation/>
+     <div className='container p-4'></div>
+     <Routes>
+      <Route path='/' element={<UserList/>}></Route>
+      <Route path='/crearusuario' element={<CrearteUsers/>}></Route>
+      <Route path='/edit/:id' element={<CrearteUsers/>}></Route>
+
+
+     </Routes>
+      
+
+
+     
     </div>
   );
 }
