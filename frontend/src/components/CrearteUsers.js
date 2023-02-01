@@ -1,22 +1,47 @@
 import React, { useState } from "react";
+import axios from 'axios';
 
 const CrearteUsers = () => {
-
   const valorInicial = {
     nombre: "",
     apellido: "",
     edad: "18",
     telefono: "0",
     email: "",
-  }
+  };
 
-  const [ usuario, setUsuario ]= useState(valorInicial)
+  const [usuario, setUsuario] = useState(valorInicial);
+
+  const catureData = (e) => {
+    const { name, value } = e.target;
+    setUsuario({ ...usuario, [name]: value });
+  };
+
+  const saveData = async(e) => {
+    e.preventDefault();
+    //console.log(usuario)
+
+    //crear la logica para la peticion post
+    const newUsuario = {
+      nombre: usuario.nombre,
+      apellido: usuario.apellido,
+      edad: usuario.edad,
+      telefono: usuario.telefono,
+      email: usuario.email,
+    };
+
+await axios.post('http://localhost:4000/api/usuarios',newUsuario)
+
+
+
+    setUsuario({ ...valorInicial });
+  };
 
   return (
     <div className="col-md-6 offset-md-3">
       <div className="card card-body">
         {/*form */}
-        <form>
+        <form onSubmit={saveData}>
           <div>
             <h2 className="text-center">Crear Usuario</h2>
             <div className="mb-3">
@@ -28,7 +53,7 @@ const CrearteUsers = () => {
                 required
                 value={usuario.nombre}
                 name="nombre"
-                
+                onChange={catureData}
               />
             </div>
             <div className="mb-3">
@@ -41,6 +66,7 @@ const CrearteUsers = () => {
                 required
                 value={usuario.apellido}
                 name="apellido"
+                onChange={catureData}
               />
             </div>
             <div className="mb-3">
@@ -53,6 +79,7 @@ const CrearteUsers = () => {
                 required
                 value={usuario.edad}
                 name="edad"
+                onChange={catureData}
               />
             </div>
             <div className="mb-3">
@@ -64,7 +91,8 @@ const CrearteUsers = () => {
                 placeholder="Ingrese su tefefono"
                 required
                 value={usuario.telefono}
-                name="tefefono"
+                name="telefono"
+                onChange={catureData}
               />
             </div>
             <div className="mb-3">
@@ -77,6 +105,7 @@ const CrearteUsers = () => {
                 required
                 value={usuario.email}
                 name="email"
+                onChange={catureData}
               />
             </div>
 
