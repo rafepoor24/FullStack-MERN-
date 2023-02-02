@@ -18,8 +18,8 @@ const navigation = () => {
           >
             Crear usuario
           </Link>
-          <Link className="navbar-brand"  to={"/"}>
-            Guardar usuario
+          <Link className="navbar-brand"  to={"/listaUsuarios"}>
+            Lista Usuarios
           </Link>
         </div>
       </nav>

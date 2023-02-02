@@ -8,13 +8,13 @@ usuarioCtrl.getUsuario = async (req, res) => {
 };
 
 usuarioCtrl.SaveUsuario = async (req, res) => {
-  const { nombre, apellido, edad, telefono, correo } = req.body;
+  const { nombre, apellido, edad, telefono, correo} = req.body;
   const newUsuario = new usuarioModelo({
     nombre,
     apellido,
     edad,
     telefono,
-    correo,
+    correo
   });
   await newUsuario.save();
   res.json({ massage: "user has been saved." });
@@ -30,12 +30,12 @@ usuarioCtrl.deleteUsuario = async (req, res) => {
 };
 usuarioCtrl.updateUsuario = async (req, res) => {
   const { nombre, apellido, edad, telefono, correo } = req.body;
-  await usuarioModelo.findByIdAndUpdate(req.params.id, {
+  await usuarioModelo.findOneAndUpdate(req.params.id, {
     nombre,
     apellido,
     edad,
     telefono,
-    correo,
+    correo
   });
   res.json({ massage: "user has been updated." });
 

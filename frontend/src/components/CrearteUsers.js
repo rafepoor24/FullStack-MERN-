@@ -1,5 +1,6 @@
-import React, { useState } from "react";
-import axios from 'axios';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { useParams } from "react-router-dom";
 
 const CrearteUsers = () => {
   const valorInicial = {
@@ -7,8 +8,10 @@ const CrearteUsers = () => {
     apellido: "",
     edad: "18",
     telefono: "0",
-    email: "",
+    correo: "xxx@zxxxx",
   };
+  //let {id}=parseInt(useParams()) ;
+  //const [subId,setSubid]=useState(id);
 
   const [usuario, setUsuario] = useState(valorInicial);
 
@@ -17,9 +20,9 @@ const CrearteUsers = () => {
     setUsuario({ ...usuario, [name]: value });
   };
 
-  const saveData = async(e) => {
+  const saveData = async (e) => {
     e.preventDefault();
-    //console.log(usuario)
+    console.log(usuario);
 
     //crear la logica para la peticion post
     const newUsuario = {
@@ -27,15 +30,48 @@ const CrearteUsers = () => {
       apellido: usuario.apellido,
       edad: usuario.edad,
       telefono: usuario.telefono,
-      email: usuario.email,
+      correo: usuario.correo,
     };
 
-await axios.post('http://localhost:4000/api/usuarios',newUsuario)
-
-
+    await axios.post("http://localhost:4000/api/usuarios", newUsuario);
 
     setUsuario({ ...valorInicial });
   };
+
+  //funcion para actualizar el usuario
+  /*const UpdateUser=async(e)=>{
+  e.preventDefault();
+
+  const newUsuarioUpdate = {
+    nombre: usuario.nombre,
+    apellido: usuario.apellido,
+    edad: usuario.edad,
+    telefono: usuario.telefono,
+    email: usuario.email,
+  };
+await axios.put('http://localhost:4000/api/usuarios/'+subId,newUsuarioUpdate);
+setUsuario({ ...valorInicial });
+setSubid('')
+
+};*/
+  /*const getOne=async(valorId)=>{
+  const res=await axios.get('http://localhost:4000/api/usuarios/'+valorId)
+  setUsuario({
+    nombre:res.data.nombre,
+    apellido:res.data.apellido,
+    edad:res.data.edad,
+    telefono:res.data.telefono,
+    email:res.data.email
+  })
+
+}
+useEffect(()=>{
+  if(subId !==''){
+    getOne(subId)
+  }
+},[subId])*/
+
+  //logica para hacer una peticion a la  API
 
   return (
     <div className="col-md-6 offset-md-3">
@@ -61,7 +97,6 @@ await axios.post('http://localhost:4000/api/usuarios',newUsuario)
               <input
                 type="text"
                 className="form-control"
-                id="formGroupExampleInput2"
                 placeholder="Ingrese su apellido"
                 required
                 value={usuario.apellido}
@@ -74,7 +109,6 @@ await axios.post('http://localhost:4000/api/usuarios',newUsuario)
               <input
                 type="number"
                 className="form-control"
-                id="formGroupExampleInput2"
                 placeholder="Ingrese su edad"
                 required
                 value={usuario.edad}
@@ -82,12 +116,12 @@ await axios.post('http://localhost:4000/api/usuarios',newUsuario)
                 onChange={catureData}
               />
             </div>
+            
             <div className="mb-3">
               <label>Tefefono:</label>
               <input
                 type="text"
                 className="form-control"
-                id="formGroupExampleInput2"
                 placeholder="Ingrese su tefefono"
                 required
                 value={usuario.telefono}
@@ -98,16 +132,16 @@ await axios.post('http://localhost:4000/api/usuarios',newUsuario)
             <div className="mb-3">
               <label>Email: </label>
               <input
-                type="email"
+                type="text"
                 className="form-control"
-                id="formGroupExampleInput2"
                 placeholder="Ingrese su correo"
                 required
-                value={usuario.email}
+                value={usuario.correo}
                 name="email"
                 onChange={catureData}
               />
             </div>
+  
 
             <div
               className="btn-group form-control"
