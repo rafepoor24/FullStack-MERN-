@@ -10,7 +10,7 @@ const CrearteUsers = () => {
     telefono: "0",
     correo: "xxx@zxxxx",
   };
-  //let {id}=parseInt(useParams()) ;
+  //let {id}=useParams();
   //const [subId,setSubid]=useState(id);
 
   const [usuario, setUsuario] = useState(valorInicial);
